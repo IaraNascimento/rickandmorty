@@ -19,6 +19,7 @@ export default function SingleEpisodePage() {
     async function fetchData() {
       try {
         const data = await getEpisode(id);
+        console.log({ data });
         setEpInfo(data);
       } catch (err) {
         console.error(err);
@@ -30,8 +31,13 @@ export default function SingleEpisodePage() {
 
   return (
     <div>
-      <h1>Welcome to {id}</h1>
-      <p>{epInfo?.name}</p>
+      <h1>Informações do episódio de número {id}</h1>
+      <p>id: {epInfo?.id}</p>
+      <p>name: {epInfo?.name}</p>
+      <p>exibição: {epInfo?.air_date}</p>
+      <p>código: {epInfo?.episode}</p>
+      {/* <p>personagens: {epInfo?.characters.map(el => el)}</p> */}
+      <p>link: {epInfo?.url}</p>
     </div>
   );
 }
