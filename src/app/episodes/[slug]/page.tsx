@@ -19,7 +19,6 @@ export default function SingleEpisodePage() {
     async function fetchData() {
       try {
         const data = await getEpisode(id);
-        console.log({ data });
         setEpInfo(data);
       } catch (err) {
         console.error(err);
