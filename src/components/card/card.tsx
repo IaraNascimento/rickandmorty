@@ -1,13 +1,20 @@
 import { useState, useEffect } from "react";
-import { Episode } from "@/types/episode";
-import Link from "next/link";
-import { Border, Content, EpisodeNumber, Portal, StyledCard } from "./styles";
+import {
+  Border,
+  Content,
+  Text,
+  Portal,
+  StyledCard,
+  StyledLink,
+} from "./styles";
 
 interface CardProps {
-  ep: Episode;
+  url: string;
+  text: string;
+  size?: "big" | "small";
 }
 
-export default function Card({ ep }: CardProps) {
+export default function Card({ url, text, size }: CardProps) {
   const [isGlitching, setIsGlitching] = useState(false);
 
   useEffect(() => {
@@ -33,16 +40,14 @@ export default function Card({ ep }: CardProps) {
   }, []);
 
   return (
-    <StyledCard>
+    <StyledCard $big={size === "big"}>
       {" "}
       <Border />
       <Portal />
       <Content>
-        <EpisodeNumber $isGlitching={isGlitching}>
-          <Link href={`episodes/${ep.id}`}>
-            {ep.id.toString().padStart(3, "0")}
-          </Link>
-        </EpisodeNumber>
+        <Text $isGlitching={isGlitching}>
+          <StyledLink href={url}>{text}</StyledLink>
+        </Text>
       </Content>
     </StyledCard>
   );

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled, { css, keyframes } from "styled-components";
 
 // 🔥 Animações caóticas
@@ -22,13 +23,21 @@ const rotateBorder = keyframes`
 `;
 
 // 🧬 Container principal
-export const StyledCard = styled.div`
+export const StyledCard = styled.div<{
+  $big: boolean;
+}>`
   position: relative;
-  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 80px;
   border-radius: 16px;
-  overflow: hidden;
   cursor: pointer;
+  overflow: hidden;
+  line-height: 48px;
+
+  width: ${({ $big }) => ($big ? "320px" : "120px")};
+  font-size: ${({ $big }) => ($big ? "12px" : "24px")};
 
   background: linear-gradient(135deg, #0b0f1a, #020305);
 
@@ -68,15 +77,20 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
   color: #d5fffa;
   font-family: "Courier New", monospace;
 `;
 
 // 🔢 Número do episódio com glitch
-export const EpisodeNumber = styled.h1<{
+export const Text = styled.h1<{
   $isGlitching: boolean;
 }>`
-  font-size: 48px;
+  width: 100%;
+  overflow: hidden;
   font-weight: bold;
   color: #39ff14;
 
@@ -104,4 +118,15 @@ export const Portal = styled.div`
   opacity: 0.08;
 
   transform: rotate(25deg);
+`;
+
+export const StyledLink = styled(Link)`
+  display: block;
+  width: 100%;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  text-align: center;
 `;

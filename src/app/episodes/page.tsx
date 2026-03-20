@@ -32,7 +32,10 @@ export default function AllEpisodesPage() {
       <ul>
         {episodes.map((ep) => (
           <li key={ep.id}>
-            <Card ep={ep} />
+            <Card
+              url={"episodes/" + ep.id}
+              text={ep.id.toString().padStart(3, "0")}
+            />
           </li>
         ))}
       </ul>

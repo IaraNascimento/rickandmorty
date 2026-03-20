@@ -8,10 +8,5 @@ export default function GlobalLoader() {
 
   if (!loading) return null;
 
-  return (
-    <>
-      <Portal />
-      <p>Carregando o multiverso...</p>
-    </>
-  );
+  return <Portal />;
 }

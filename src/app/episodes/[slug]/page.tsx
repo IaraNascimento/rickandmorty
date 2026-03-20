@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 
 import { Episode } from "@/types/episode";
 import { getEpisode } from "@/services/services";
-import { Card, Title, Row, Label, Value, StyledLink } from "./styles";
+import { Wrap, Title, Row, Label, Value, Inner } from "./styles";
+import Card from "@/components/card/card";
 
 export default function SingleEpisodePage() {
   const params = useParams();
@@ -30,23 +31,41 @@ export default function SingleEpisodePage() {
   }, [id]);
 
   return (
-    <Card>
-      <Title>Episódio #{epInfo?.id}</Title>
+    <Wrap>
+      <Inner>
+        <Title>Episódio #{epInfo?.id}</Title>
 
-      <Row>
-        <Label>Nome:</Label>
-        <Value>{epInfo?.name}</Value>
-      </Row>
+        <Row>
+          <Label>Nome:</Label>
+          <Value>{epInfo?.name}</Value>
+        </Row>
 
-      <Row>
-        <Label>Transmissão:</Label>
-        <Value>{epInfo?.air_date}</Value>
-      </Row>
+        <Row>
+          <Label>Transmissão:</Label>
+          <Value>{epInfo?.air_date}</Value>
+        </Row>
 
-      <Row>
-        <Label>Código:</Label>
-        <Value>{epInfo?.episode}</Value>
-      </Row>
-    </Card>
+        <Row>
+          <Label>Código:</Label>
+          <Value>{epInfo?.episode}</Value>
+        </Row>
+      </Inner>
+
+      <Inner>
+        <Row>
+          <Label>Personagens:</Label>
+          <ul>
+            {epInfo?.characters?.map((ch) => (
+              <li key={ch.split("/").pop()}>
+                <Card
+                  url={"/characters/" + ch.split("/").pop()}
+                  text={ch?.split("/").pop() || ""}
+                />
+              </li>
+            ))}
+          </ul>
+        </Row>
+      </Inner>
+    </Wrap>
   );
 }

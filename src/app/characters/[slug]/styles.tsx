@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Wrap = styled.div`
   display: flex;
+  text-align: center;
   width: calc(100% - 80px);
   padding: 24px;
   margin: 16px 40px;
@@ -14,10 +15,14 @@ export const Wrap = styled.div`
 
   color: #e6f7ff;
   font-family: system-ui, sans-serif;
+
+  img {
+    margin-bottom: 16px;
+    max-width: 320px;
+  }
 `;
 
 export const Inner = styled.div`
-  min-width: 320px;
   ul {
     list-style: none;
     padding: 0;

@@ -5,6 +5,8 @@ export const Container = styled.div`
   gap: 8px;
   justify-content: center;
   margin-top: 20px;
+  max-width: 100%;
+  flex-wrap: wrap;
 `;
 
 export const PageButton = styled.button<{ $active?: boolean }>`
