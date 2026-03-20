@@ -28,3 +28,11 @@ export const Wellcome = styled.div`
     z-index: -1;
   }
 `;
+
+export const Main = styled.main<{ $hidden: boolean }>`
+  ${({ $hidden }) =>
+    $hidden &&
+    `
+    visibility: hidden;
+  `}
+`;

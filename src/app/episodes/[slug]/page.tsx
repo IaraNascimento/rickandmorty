@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 import { Episode } from "@/types/episode";
 import { getEpisode } from "@/services/services";
+import { Card, Title, Row, Label, Value, StyledLink } from "./styles";
 
 export default function SingleEpisodePage() {
   const params = useParams();
@@ -29,14 +30,23 @@ export default function SingleEpisodePage() {
   }, [id]);
 
   return (
-    <div>
-      <h1>Informações do episódio de número {id}</h1>
-      <p>id: {epInfo?.id}</p>
-      <p>name: {epInfo?.name}</p>
-      <p>exibição: {epInfo?.air_date}</p>
-      <p>código: {epInfo?.episode}</p>
-      {/* <p>personagens: {epInfo?.characters.map(el => el)}</p> */}
-      <p>link: {epInfo?.url}</p>
-    </div>
+    <Card>
+      <Title>Episódio #{epInfo?.id}</Title>
+
+      <Row>
+        <Label>Nome:</Label>
+        <Value>{epInfo?.name}</Value>
+      </Row>
+
+      <Row>
+        <Label>Transmissão:</Label>
+        <Value>{epInfo?.air_date}</Value>
+      </Row>
+
+      <Row>
+        <Label>Código:</Label>
+        <Value>{epInfo?.episode}</Value>
+      </Row>
+    </Card>
   );
 }
